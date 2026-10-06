@@ -1,0 +1,20 @@
+# Source data remain local until redistribution terms are verified.
+data/raw/*
+!data/raw/README.md
+*.csv
+*.pkl
+*.pickle
+*.joblib
+catboost_info/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+*.log
+.jupyter/
+.matplotlib/
