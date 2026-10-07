@@ -1,6 +1,6 @@
 # Local input data
 
-The reviewed workflow requires these original files in this directory:
+The training workflow requires these original files in this directory:
 
 | Filename | Original rows | Purpose |
 |---|---:|---|
@@ -10,11 +10,10 @@ The reviewed workflow requires these original files in this directory:
 
 Alternatively, point `python -m src.evaluate --data-dir "PATH"` at a folder containing them.
 
-CSV files are deliberately excluded from Git. Original source URLs, versions,
-collection dates, currency metadata, and redistribution terms were not included
-in the supplied coursework folder and have not been verified. No download URL
-is invented here. This is a reproducibility dependency: a new reader cannot
-rerun the experiment without obtaining the same inputs legitimately.
+CSV files are excluded from Git because their original sources and redistribution
+terms have not been verified. The coursework folder did not include source URLs,
+versions, collection dates or currency metadata. To retrain, you will need access
+to the three original inputs listed above.
 
 The original `hr_data_new.csv` and `listings_new.csv` are not used by the corrected
 workflow. All learned transformations are fitted on training folds from the raw

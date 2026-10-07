@@ -8,8 +8,8 @@ engineering and model comparison.
 
 This repository includes the original coursework source and a **2026 evaluation
 revision**. The revision corrects data leakage and regenerates results using
-training-only preprocessing and held-out evaluation. The original headline
-scores are superseded; see [the technical review](docs/REVIEW.md).
+training-only preprocessing and held-out evaluation. The results below replace the original
+scores; the changes are explained in [the technical review](docs/REVIEW.md).
 
 ## Project at a glance
 
@@ -23,7 +23,7 @@ analysis using pandas, Matplotlib, Seaborn, Plotly and Folium. The modelling
 notebook compares base models with grid or randomized hyperparameter searches
 and records classification reports, regression errors and cross-validation scores.
 
-## Work beyond the suggested model minimum
+## Original experiments
 
 The supplied Assignment 2 brief encouraged at least two models for each problem,
 tuning, evaluation and a reasoned recommendation. The notebooks explored:
@@ -39,13 +39,12 @@ tuning, evaluation and a reasoned recommendation. The notebooks explored:
   using 171 supplied MRT station coordinates.
 - **Reusable evaluation functions**, model comparisons and a written report.
 
-These are evidenced implementations and experiments, not proof that every choice
-improved performance. The Assignment 1 brief was not supplied, so its exact
-requirements cannot be distinguished from extensions. A Streamlit application,
-presentation slides and presentation recording were not in the supplied folder;
-no deployment is claimed here.
+These experiments explored different approaches; their individual contributions
+to performance were not measured separately. The Assignment 1 brief was unavailable
+for review. This repository contains the analysis and modelling work; a Streamlit
+app, slides and presentation recording were not included in the project folder.
 
-## Verified results from the 2026 revision
+## Results from the 2026 revision
 
 Models and hyperparameters were selected using **training cross-validation**.
 Only the selected model and a dummy baseline were then evaluated on each holdout.
@@ -71,8 +70,8 @@ by average precision in three-fold stratified CV. The seeded 75/25 split contain
 Only **8.52%** of employees are promoted. Accuracy therefore needs the baseline
 and minority-class metrics above. At the fixed 0.5 threshold, the selected model
 detects 398 of 1,167 promoted test employees and misses 769. Its high precision
-comes with low recall. No threshold optimization, fairness validation or production
-readiness is claimed.
+comes with low recall. Threshold tuning, fairness assessment and deployment
+validation remain future work.
 
 ![Precision-recall curve for employee promotion](results/hr_precision_recall.png)
 
@@ -111,7 +110,7 @@ are in [results/metrics.json](results/metrics.json).
 
 The original HR code resampled the entire dataset with SMOTE after splitting;
 the Airbnb stack fitted on test labels. Their reported 96.88% accuracy and 0.8804
-R² are therefore withdrawn as generalization claims.
+R² are invalid estimates of performance on unseen data.
 
 The corrected workflow starts from the raw CSVs. Imputation, categorical encoding,
 scaling, clustering and other learned feature statistics are fitted inside each
@@ -121,9 +120,9 @@ checks stacking and split integrity. HR class weighting is compared inside CV
 instead of applying SMOTE to encoded categories.
 
 The smaller revised benchmark uses three HR candidate families and four Airbnb
-candidate families. It does not claim to reproduce every original search. The
-original source is retained in `archive/` with prominent notices and stripped
-outputs. The new code, tests and measurements are explicitly a later revision.
+candidate families, covering a smaller set of experiments than the coursework.
+The original source is in `archive/`, with saved outputs removed and a note
+explaining the known issues. The code in `src/` and results date from 2026.
 
 ## Repository layout
 
@@ -131,11 +130,11 @@ outputs. The new code, tests and measurements are explicitly a later revision.
 src/                         Corrected feature engineering and evaluation
 tests/test_integrity.py       Tests for leakage boundaries and feature behaviour
 notebooks/project_walkthrough.ipynb
-                             Executed guide to the verified results
+                             Walkthrough of the saved results
 results/                     Metrics and two diagnostic figures
 docs/REVIEW.md                Findings, fixes and remaining limitations
 data/raw/README.md            Required inputs and data provenance status
-archive/                     Original coursework source, clearly superseded
+archive/                     Original coursework notebooks and notes
 requirements.txt             Versions used for the current workflow
 ```
 
@@ -166,8 +165,8 @@ needing the datasets. Its optional training switch is off by default.
 **Data availability:** datasets are not bundled because their original sources,
 versions and redistribution terms are unverified. A fresh clone can run the
 integrity tests and inspect the saved results, but needs the inputs to retrain.
-See [data provenance](data/raw/README.md). No license grant for third-party data
-or school materials is implied.
+See [data provenance](data/raw/README.md) for the required files and unresolved
+source and licensing details.
 
 ## Limits and next improvements
 
@@ -179,5 +178,5 @@ date is unknown; distances are straight-line approximations, not walking time.
 
 Useful next experiments would choose HR thresholds using training-only validation,
 examine subgroup performance and calibration, establish dated dataset sources,
-and test Airbnb models on later data. Deployment should follow those checks rather
-than being inferred from notebook scores.
+and test Airbnb models on later data. These checks would be needed before
+considering deployment.

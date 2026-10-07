@@ -3,13 +3,12 @@
 Review date: 6 October 2026. Cell references below are **zero-based indexes in the
 original supplied notebooks**, before the archive notice was added.
 
-## Review conclusion
+## Summary
 
-The project demonstrates substantial exploratory analysis, feature engineering,
-model comparison and tuning. The original headline scores are not defensible
-estimates of generalization. The current implementation rebuilds evaluation from
-raw inputs and supersedes those scores. It is a retrospective educational
-benchmark, not a deployed HR or pricing system.
+The coursework covers exploratory analysis, feature engineering, model comparison
+and tuning. Data leakage invalidates the original headline scores. The revised
+workflow starts from raw inputs and produces new results using separate training
+and test data. The project remains an educational benchmark.
 
 ## What was inspected
 
@@ -96,17 +95,16 @@ ellipsoidal geodesic. Neither measures walking accessibility.
 
 Regression selection minimizes log-space RMSE. Back-transforming log predictions
 does not provide a bias-corrected expected monetary price; original-scale errors
-are reported honestly, with no claim of revenue uplift. The close CV difference
+are reported separately. The close CV difference
 between stacking and histogram boosting does not establish statistically
 significant superiority.
 
 ## What changed versus the coursework
 
-The original eight classifier and five regressor families remain documented in the
-archives. Their enormous search grids were not rerun. The current smaller benchmark
-prioritizes verifiable evaluation over algorithm count. It adds simple baselines,
-consistent selection metrics, grouped stacking, reproducibility records, tests and
-fresh plots. No deployment or Streamlit implementation has been invented.
+The original eight classifier and five regressor families remain in the archives.
+Their full search grids were not rerun. The revised benchmark compares fewer models
+and adds baselines, consistent selection metrics, grouped stacking, reproducibility
+records, tests and new plots. The repository has no deployment or Streamlit app.
 
 Only the archive packaging changed in the historical notebooks: filenames,
 environment metadata, execution counters and saved outputs were cleaned, and a
